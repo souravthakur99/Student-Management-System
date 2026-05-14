@@ -61,6 +61,26 @@ private String email;
 | PUT | /students/{id} |
 
 | DELETE | /students/{id} |
+
+## API Testing
+
+The REST APIs were tested using Postman.
+
+Tested operations:
+
+- GET Request
+
+- POST Request
+
+- PUT Request
+
+- DELETE Request
+
+- PATCH Request
+
+## Tools Used
+
+- Postman
 ## Run Project
 
 1. Clone repository
