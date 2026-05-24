@@ -14,4 +14,5 @@ public class CreatenewStudentdto {
     @Email
     @NotBlank(message = "email required")
     private String email;
+
 }
