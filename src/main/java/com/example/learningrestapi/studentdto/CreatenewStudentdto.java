@@ -2,6 +2,7 @@ package com.example.learningrestapi.studentdto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Singular;
@@ -14,5 +15,6 @@ public class CreatenewStudentdto {
     @Email
     @NotBlank(message = "email required")
     private String email;
-
+    @NotNull(message="pass the departmentid")
+    private Long department_id;
 }

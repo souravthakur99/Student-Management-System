@@ -1,6 +1,8 @@
 package com.example.learningrestapi.service.impl;
 
+import com.example.learningrestapi.entity.Department;
 import com.example.learningrestapi.entity.Student;
+import com.example.learningrestapi.repository.DepartmentRepository;
 import com.example.learningrestapi.repository.StudentRepository;
 import com.example.learningrestapi.service.StudentService;
 import com.example.learningrestapi.studentdto.CreatenewStudentdto;
@@ -16,8 +18,10 @@ public class StudentServiceimpl implements StudentService {
 
     private final StudentRepository studentRepository;
     private final ModelMapper modelMapper;
-    StudentServiceimpl(StudentRepository studentRepository, ModelMapper modelMapper){
+    private final DepartmentRepository departmentRepository;
+    StudentServiceimpl(StudentRepository studentRepository, ModelMapper modelMapper,DepartmentRepository departmentRepository){
         this.studentRepository=studentRepository;
+        this.departmentRepository=departmentRepository;
         this.modelMapper = modelMapper;
     }
     @Override
@@ -38,6 +42,8 @@ public class StudentServiceimpl implements StudentService {
     @Override
     public StudentDto createnewstudent(CreatenewStudentdto createnewstudent) {
         Student newStudent=modelMapper.map(createnewstudent , Student.class);
+        Department department=departmentRepository.findById(createnewstudent.getDepartment_id()).orElseThrow(()->new RuntimeException("Department not found"));
+        newStudent.setDepartment(department);
         Student student=studentRepository.save(newStudent);
         return modelMapper.map(student,StudentDto.class);
     }
